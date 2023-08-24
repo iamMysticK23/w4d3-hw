@@ -25,6 +25,7 @@ def distinct(seq):
             a_list.append(number)
     return a_list
 print(distinct([1, 1, 2]))
+# time complexity - O(n^2)
 
 # Refactored solution
 
@@ -39,6 +40,9 @@ def distinct(seq):
             new_list.append(numbers) # if numbers aren't appended to new list then add them
     return new_list
 print(distinct([1, 1, 2]))
+# time complexity - O(n) - the if statement doesn't use the .count() method so it reduces the time
+
+
 # -----------------------------------------
 # Question 2: Quarter of the year
 # Given a month as an integer from 1 to 12, return to which quarter of the year it belongs as an integer number.
@@ -60,12 +64,16 @@ def quarter_of(month):
         return 4
 print("The quarter of chosen month is:")
 print(quarter_of(12))
+#time complexity - O(1)
 
 # Refactored answer:
 def quarter_of(month):
     return (month + 2) // 3 # month + 2 determines the quarter based on the month's position within the quarter 
 print("The quarter of chosen month is:")
 print(quarter_of(12))
+# time complexity - O(1) - it's the same as the other one. I picked this because I wanted to see if using fewer lines of code would actually make it more efficient.
+
+
 # -----------------------------------------
 # Question 3 : Beginner Series #3 Sum of Numbers
 
@@ -82,6 +90,22 @@ print(quarter_of(12))
 
 # My original answer:
 def get_sum(a, b):
+    if a == b: 
+        return a
+
+    total = 0
+    small, big = sorted([a,b])
+
+    for i in range(small,big + 1):
+        for j in range(small, big + 1):
+            total= total + i + j
+
+print(get_sum(0,1))
+# time complexity O(n ^2) there is a nested for loop and it causes this to run slower
+
+# Refactored answer:
+
+def get_sum(a, b):
     if a == b:  # edge case
         return a
     
@@ -93,12 +117,6 @@ def get_sum(a, b):
     return total
 print(get_sum(0,1))
 
-# Refactored answer:
-def get_sum(a, b):
-    if a == b: 
-        return a
-    small, big = sorted([a,b])
-    return sum([i for i in range(small,big + 1)])
-print(get_sum(1,2))
+# time complexity O(n) - since there is only 1 for loop this code will run faster
 
 
